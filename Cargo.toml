@@ -1,0 +1,36 @@
+[package]
+name = "hid-remapper"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+ch32-hal = { git = "https://github.com/ch32-rs/ch32-hal", default-features = false, features = [
+    "ch32v203c8u6",
+    "embassy",
+    "memory-x",
+    "rt",
+    "time-driver-tim2",
+] }
+embassy-boot = "0.7.0"
+embassy-executor = { version = "0.10.0", features = [
+    "executor-thread",
+    "platform-spin",
+] }
+embassy-futures = "0.1.2"
+embassy-time = "0.5.0"
+embassy-usb = "0.6.0"
+embassy-usb-dfu = { version = "0.3.0", features = ["application", "dfu"] }
+embassy-usb-host = "0.1.0"
+qingke = { version = "0.7.0", features = ["critical-section-impl"] }
+qingke-rt = "0.7.0"
+panic-halt = "1.0.0"
+portable-atomic = { version = "1.0.0", features = [
+    "critical-section",
+    "require-cas",
+] }
+static_cell = "2.1.1"
+
+[profile.release]
+strip = false
+lto = true
+opt-level = "z"
